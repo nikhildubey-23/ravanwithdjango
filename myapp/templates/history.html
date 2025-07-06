@@ -1,4 +1,3 @@
-<!-- filepath: /home/ravan/Desktop/PythonProjects/flask-app/app/templates/history.html -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -7,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>History - Ravan Offensive Security AI Assistant</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
-    <!-- Include Prism.js Dark Theme CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-tomorrow.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -193,85 +192,202 @@
     </style>
 </head>
 <body>
-    <div class="navcontainer">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="/">Ravan</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Futuristic Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-shield-alt me-2"></i>RAVAN AI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" href="/view_history">History</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/about">About</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/reachout">Reach Out</a>
-                  </li>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/view_history">
+                            <i class="fas fa-history me-1"></i>History
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">
+                            <i class="fas fa-info-circle me-1"></i>About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reachout">
+                            <i class="fas fa-envelope me-1"></i>Reach Out
+                        </a>
+                    </li>
                 </ul>
-              </div>
-            </div>
-          </nav>
-    </div>
-    <div class="main-container-history" style="height:100%;">
-        <div class="container container-history     "style="height:100%;">
-            <h1>User History</h1>
-            <div class="history-buttons">
-                <form method="POST" action="/clear_history">
-                    <button type="submit"class="answer" >Clear History</button>
-                </form>
-                
-            </div>
-            <div>
-                {% if history %}
-                    <ul style="padding-left:0; margin:20px;">
-                        {% for record in history %}     
-                            <li>
-                                <strong>Question:</strong> {{ record.1 }}<br>
-                                <strong>Answer:</strong> {{ record.2 | safe }}<br>
-                                <strong>Timestamp:</strong> {{ record.3 }}<br>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    <p>No history available.</p>
-                {% endif %}
             </div>
         </div>
+    </nav>
 
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-history me-2" style="color: var(--primary-neon); font-size: 1.5rem;"></i>
+                    <h2 class="mb-0" style="color: var(--primary-neon); font-family: 'Orbitron', monospace;">Query History</h2>
+                </div>
+                <a href="/clear_history" class="btn clear-btn">
+                    <i class="fas fa-trash me-2"></i>Clear History
+                </a>
+            </div>
+            
+            {% if history %}
+                <div class="row">
+                    {% for record in history %}
+                        <div class="col-12 mb-3">
+                            <div class="history-item">
+                                <div class="d-flex align-items-start">
+                                    <i class="fas fa-question-circle me-3 mt-1" style="color: var(--secondary-neon);"></i>
+                                    <div class="flex-grow-1">
+                                        <div class="history-question">{{ record.1 }}</div>
+                                        <div class="history-answer mt-2">{{ record.2|safe }}</div>
+                                        <div class="history-timestamp mt-2">
+                                            <i class="fas fa-clock me-1"></i>{{ record.3 }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="text-center py-5">
+                    <i class="fas fa-inbox" style="font-size: 4rem; color: var(--text-secondary); opacity: 0.5;"></i>
+                    <h4 class="mt-3" style="color: var(--text-secondary);">No History Found</h4>
+                    <p class="text-muted">Start asking questions to build your conversation history!</p>
+                    <a href="/" class="btn answer mt-3">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Chat
+                    </a>
+                </div>
+            {% endif %}
+        </div>
     </div>
     <!-- Include Prism.js JavaScript and Auto-loader plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
-        function applyDarkModePreference() {
-            const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const navbar = document.querySelector('.navbar');
-            if (isDarkMode) {
-                navbar.classList.remove('navbar-light', 'bg-light');
-                navbar.classList.add('navbar-dark', 'bg-dark');
-            } else {
-                navbar.classList.remove('navbar-dark', 'bg-dark');
-                navbar.classList.add('navbar-light', 'bg-light');
+        // Futuristic UI Enhancements for History Page
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Enhanced copy button functionality for code blocks
+            document.querySelectorAll('pre').forEach((pre) => {
+                const button = document.createElement('button');
+                button.className = 'copy-button';
+                button.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                button.addEventListener('click', () => {
+                    const code = pre.querySelector('code').innerText;
+                    navigator.clipboard.writeText(code).then(() => {
+                        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        button.style.background = 'var(--accent-neon)';
+                        setTimeout(() => {
+                            button.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                            button.style.background = 'var(--primary-neon)';
+                        }, 2000);
+                    });
+                });
+                pre.appendChild(button);
+            });
+
+            // Add hover effects to history items
+            document.querySelectorAll('.history-item').forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`;
+                item.classList.add('animate__animated', 'animate__fadeInUp');
+            });
+
+            // Add particle effect to navbar brand
+            const brand = document.querySelector('.navbar-brand');
+            if (brand) {
+                brand.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                
+                brand.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            }
+
+            // Add floating particles effect
+            createParticles();
+        });
+
+        // Create floating particles
+        function createParticles() {
+            const particleCount = 15;
+            const container = document.body;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: fixed;
+                    width: 2px;
+                    height: 2px;
+                    background: var(--primary-neon);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: -1;
+                    opacity: 0.3;
+                    animation: float ${Math.random() * 10 + 10}s linear infinite;
+                `;
+                
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                
+                container.appendChild(particle);
             }
         }
 
-        
-          
-        // Apply dark mode preference on page load
-        document.addEventListener('DOMContentLoaded', (event) => {
-            applyDarkModePreference();
-
-            // Listen for changes in the system color scheme preference
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyDarkModePreference);
-        });
+        // Add floating animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0% {
+                    transform: translateY(100vh) rotate(0deg);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 0.3;
+                }
+                90% {
+                    opacity: 0.3;
+                }
+                100% {
+                    transform: translateY(-100px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+            
+            .animate__animated {
+                animation-duration: 0.6s;
+                animation-fill-mode: both;
+            }
+            
+            .animate__fadeInUp {
+                animation-name: fadeInUp;
+            }
+            
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translate3d(0, 40px, 0);
+                }
+                to {
+                    opacity: 1;
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
