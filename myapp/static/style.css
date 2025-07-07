@@ -630,4 +630,53 @@ body.light-mode .list-group-item:hover {
   .navbar-brand {
     font-size: 1.2rem;
   }
+}
+
+/* Table Styling for AI Output */
+.output table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background: var(--glass-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px 0 rgba(0,255,255,0.08);
+}
+.output th, .output td {
+  padding: 0.75rem 1.2rem;
+  border: 1px solid var(--primary-neon);
+  text-align: left;
+  color: var(--text-primary);
+  background: transparent;
+}
+.output th {
+  background: var(--primary-neon);
+  color: var(--dark-bg);
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  text-shadow: 0 0 10px var(--primary-neon);
+}
+.output tr:nth-child(even) td {
+  background: rgba(0,255,255,0.04);
+}
+@media (max-width: 768px) {
+  .output table, .output thead, .output tbody, .output th, .output td, .output tr {
+    display: block;
+    width: 100%;
+  }
+  .output th, .output td {
+    padding: 0.7rem 0.5rem;
+    font-size: 0.98rem;
+  }
+  .output th {
+    text-align: left;
+  }
+}
+body.light-mode .output th {
+  background: #00bcd4;
+  color: #fff;
+  text-shadow: none;
+}
+body.light-mode .output td {
+  color: #222;
 } 
