@@ -86,7 +86,12 @@ def index(request):
     return render(request, 'index.html', {'history': view_history(), 'output': output, 'output_language': output_language})
 
 def view_history_page(request):
-    return render(request, 'history.html', {'history': view_history()})
+    rows = view_history()
+    history = [
+        {'id': row[0], 'question': row[1], 'answer': row[2], 'timestamp': row[3]}
+        for row in rows
+    ]
+    return render(request, 'history.html', {'history': history})
 
 def clear(request):
     clear_history()
