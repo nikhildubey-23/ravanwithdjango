@@ -641,10 +641,11 @@ body.light-mode .list-group-item:hover {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 16px 0 rgba(0,255,255,0.08);
+  border: 2.5px solid var(--primary-neon);
 }
 .output th, .output td {
   padding: 0.75rem 1.2rem;
-  border: 1px solid var(--primary-neon);
+  border: 2px solid var(--primary-neon);
   text-align: left;
   color: var(--text-primary);
   background: transparent;
@@ -679,4 +680,10 @@ body.light-mode .output th {
 }
 body.light-mode .output td {
   color: #222;
+}
+body.light-mode .output table {
+  border: 2.5px solid #00bcd4;
+}
+body.light-mode .output th, body.light-mode .output td {
+  border: 2px solid #00bcd4;
 } 
