@@ -686,4 +686,13 @@ body.light-mode .output table {
 }
 body.light-mode .output th, body.light-mode .output td {
   border: 2px solid #00bcd4;
+}
+
+tbody, td, tfoot, th, thead, tr {
+    border-color: var(--primary-neon) !important;
+    border-style: solid;
+    border-width: 2px;
+}
+body.light-mode tbody, body.light-mode td, body.light-mode tfoot, body.light-mode th, body.light-mode thead, body.light-mode tr {
+    border-color: #00bcd4 !important;
 } 
