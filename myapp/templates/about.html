@@ -9,187 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-tomorrow.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background: rgb(2,0,36);
-        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 0%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 79%); 
-        margin: 0;
-        padding: 0;
-        width: 100vw;
-        height: 100vh;
-    }
-    .main-container {
-        height: 90%;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-    .container {
-        border: 1px solid black;
-        overflow-y: scroll;
-        height: 100%;
-        margin-top: 45px;
-        margin-bottom: 100px;
-        background: #fff;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        width: 100%;
-    }
-    ul{
-        padding-left: 0;
-    }
-    h1 {
-        text-align: center;
-        color: #333;
-    }
-    form {
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-        justify-content: center;
-        align-items: center;
-        padding: 1.5rem 0;
-    }
-    textarea {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        width: 85%;
-        height: 50%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        resize: none;
-        border: 2px solid black;
-        font-size: 2rem;
-    }
-    button {
-        padding: 10px;
-        border: none;
-        border-radius: 4px;
-        background-color: #007bff;
-        color: white;
-        cursor: pointer;
-    }
-    button:hover {
-        background-color: #0056b3;
-    }
-    .output {
-        margin-top: 20px;
-    }
-    .output pre {
-        background: #2d2d2d; /* Dark background */
-        padding: 10px;
-        border-radius: 4px;
-        overflow-x: auto;
-        position: relative;
-    }
-    .copy-button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        padding: 5px 10px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    .copy-button:hover {
-        background-color: #0056b3;
-    }
-    .search-container {
-        padding: 0 10px;
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-    }
-    .answer {
-        background-color: transparent;
-        height: 100%;
-        background-color: red;
-        border-radius: 1rem;
-        padding: 1rem;
-        border: 1px solid black;
-    }
-    .answer:hover {
-        background-color: rgb(235, 33, 33);
-    }
-    
-    @media (max-width: 572px) {
-        .container {
-            margin-top: 0;
-            margin-bottom: 80px;
-            border-radius: 0;
-        }
-        .main-container-history {
-            height: 100%;
-            margin-bottom: 0;
-        }
-        
-        .search-container {
-            background-color: #fff;
-        }
-        .container-history{
-            margin-top:0;
-            margin-bottom:0;
-        }
-        
-        @media (prefers-color-scheme: dark) {
-            .search-container{
-                background-color: #1e1e1e;
-            }
-        }
-    }
-    
-    /* Dark mode styles */
-    @media (prefers-color-scheme: dark) {
-        body {
-            background: rgb(0,212,255);
-            background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(255,255,255,1) 0%, rgba(0,0,0,1) 0%, rgba(30,28,60,1) 100%, rgba(255,255,255,1) 100%, rgba(2,0,36,1) 100%);
-            color: #ffffff;
-        }
-        .container {
-            background: #1e1e1e;
-            color: #ffffff;
-        }
-        h1 {
-            color: #ffffff;
-        }
-        textarea {
-            background: #333;
-            color: #fff;
-            border: 1px solid #555;
-        }
-        .navbar {
-            background-color: #1e1e1e;
-            color: #ffffff;
-        }
-        .output pre {
-            background: #2d2d2d; /* Dark background */
-        }
-        
-    }
-    .main-container-history{
-        height: 100%;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-    .container-history{
-        margin-top:0;
-        margin-bottom: 0;
-    }
-    
-    
-    </style>
 </head>
 <body>
     <!-- Futuristic Navigation -->
@@ -224,166 +43,57 @@
                         </a>
                     </li>
                 </ul>
+                <button id="theme-toggle" class="btn btn-sm ms-3" aria-label="Toggle dark/light mode" style="background: var(--primary-neon); color: var(--dark-bg); border-radius: 1rem; font-weight: bold;">
+                    <i class="fas fa-moon"></i>
+                </button>
             </div>
         </div>
     </nav>
-
-    <!-- Main Content -->
-    <div class="main-container">
-        <div class="container">
-            <div class="text-center mb-5">
-                <i class="fas fa-shield-alt mb-3" style="font-size: 4rem; color: var(--primary-neon);"></i>
-                <h1 class="mb-3" style="color: var(--primary-neon); font-family: 'Orbitron', monospace;">About Ravan AI</h1>
-                <div class="border-bottom border-primary mb-4" style="border-color: var(--primary-neon) !important;"></div>
-            </div>
-            
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <div class="card mb-4" style="background: var(--card-bg); border: 1px solid var(--primary-neon);">
-                        <div class="card-body">
-                            <h3 class="card-title mb-3" style="color: var(--primary-neon);">
-                                <i class="fas fa-robot me-2"></i>AI-Powered Security Assistant
-                            </h3>
-                            <p class="card-text">Welcome to Ravan Offensive Security AI Assistant. This cutting-edge platform leverages advanced artificial intelligence to provide comprehensive cybersecurity guidance and offensive security insights.</p>
-                        </div>
-                    </div>
-
-                    <div class="card mb-4" style="background: var(--card-bg); border: 1px solid var(--secondary-neon);">
-                        <div class="card-body">
-                            <h3 class="card-title mb-3" style="color: var(--secondary-neon);">
-                                <i class="fas fa-target me-2"></i>Our Mission
-                            </h3>
-                            <p class="card-text">Our goal is to empower security professionals, researchers, and enthusiasts with the knowledge and tools they need to stay ahead in the ever-evolving field of cybersecurity. We believe in making advanced security knowledge accessible to everyone.</p>
-                        </div>
-                    </div>
-
-                    <div class="card mb-4" style="background: var(--card-bg); border: 1px solid var(--accent-neon);">
-                        <div class="card-body">
-                            <h3 class="card-title mb-3" style="color: var(--accent-neon);">
-                                <i class="fas fa-cogs me-2"></i>Key Features
-                            </h3>
-                            <ul class="list-unstyled">
-                                <li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--accent-neon);"></i>Advanced AI-powered responses</li>
-                                <li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--accent-neon);"></i>Cybersecurity expertise</li>
-                                <li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--accent-neon);"></i>Web development assistance</li>
-                                <li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--accent-neon);"></i>Code generation and analysis</li>
-                                <li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--accent-neon);"></i>Conversation history tracking</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="text-center mt-5">
-                        <div class="d-flex align-items-center justify-content-center mb-3">
-                            <i class="fas fa-user-circle me-2" style="color: var(--primary-neon); font-size: 1.5rem;"></i>
-                            <h4 class="mb-0" style="color: var(--primary-neon);">Developer: Nikhil Dubey</h4>
-                        </div>
-                        <p class="text-muted">Thank you for choosing Ravan Offensive Security AI Assistant!</p>
-                        <a href="/" class="btn answer mt-3">
-                            <i class="fas fa-arrow-left me-2"></i>Back to Chat
-                        </a>
-                    </div>
-                </div>
+    <div class="main-container animate-fade-in">
+        <div class="container animate-fade-in">
+            <h1 class="mb-4" style="font-family: 'Orbitron', monospace; color: var(--primary-neon); text-align: center;">About Ravan Offensive Security AI Assistant</h1>
+            <!-- About content here, keep it concise and visually appealing -->
+            <p style="font-size: 1.2rem; color: var(--text-secondary);">Ravanai is an advanced AI assistant designed to help with cybersecurity and web development. It leverages state-of-the-art AI models to answer your questions, provide code samples, and offer security advice in real time.</p>
+            <ul style="font-size: 1.1rem; color: var(--text-primary);">
+                <li>Cybersecurity solutions and best practices</li>
+                <li>Web development guidance and code generation</li>
+                <li>Natural language understanding</li>
+                <li>Query history and interactive web interface</li>
+            </ul>
+            <div class="mt-4">
+                <h4 style="color: var(--primary-neon);">How to Use</h4>
+                <ol style="color: var(--text-secondary);">
+                    <li>Ask your question in the main chat interface.</li>
+                    <li>View the AI's response instantly.</li>
+                    <li>Check your query history for past answers.</li>
+                </ol>
             </div>
         </div>
     </div>
-
-    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Futuristic UI Enhancements for About Page
-        document.addEventListener('DOMContentLoaded', (event) => {
-            // Add particle effect to navbar brand
-            const brand = document.querySelector('.navbar-brand');
-            if (brand) {
-                brand.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.05)';
-                });
-                
-                brand.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1)';
-                });
-            }
-
-            // Add floating particles effect
-            createParticles();
-
-            // Add card hover effects
-            document.querySelectorAll('.card').forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.2}s`;
-                card.classList.add('animate__animated', 'animate__fadeInUp');
-            });
+    window.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.animate-fade-in').forEach((el, i) => {
+            el.style.opacity = 0;
+            setTimeout(() => {
+                el.style.transition = 'opacity 0.7s cubic-bezier(.4,0,.2,1)';
+                el.style.opacity = 1;
+            }, 200 + i * 150);
         });
-
-        // Create floating particles
-        function createParticles() {
-            const particleCount = 15;
-            const container = document.body;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.style.cssText = `
-                    position: fixed;
-                    width: 2px;
-                    height: 2px;
-                    background: var(--primary-neon);
-                    border-radius: 50%;
-                    pointer-events: none;
-                    z-index: -1;
-                    opacity: 0.3;
-                    animation: float ${Math.random() * 10 + 10}s linear infinite;
-                `;
-                
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 10 + 's';
-                
-                container.appendChild(particle);
+    });
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('light-mode');
+            if(document.body.classList.contains('light-mode')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
             }
-        }
-
-        // Add floating animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes float {
-                0% {
-                    transform: translateY(100vh) rotate(0deg);
-                    opacity: 0;
-                }
-                10% {
-                    opacity: 0.3;
-                }
-                90% {
-                    opacity: 0.3;
-                }
-                100% {
-                    transform: translateY(-100px) rotate(360deg);
-                    opacity: 0;
-                }
-            }
-            
-            .animate__animated {
-                animation-duration: 0.8s;
-                animation-fill-mode: both;
-            }
-            
-            .animate__fadeInUp {
-                animation-name: fadeInUp;
-            }
-            
-            @keyframes fadeInUp {
-                from {
-                    opacity: 0;
-                    transform: translate3d(0, 40px, 0);
-                }
-                to {
-                    opacity: 1;
-                    transform: translate3d(0, 0, 0);
-                }
-            }
-        `;
-        document.head.appendChild(style);
+        });
+    }
     </script>
 </body>
 </html>
