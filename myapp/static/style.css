@@ -689,6 +689,7 @@ body.light-mode .output th, body.light-mode .output td {
 }
 
 tbody, td, tfoot, th, thead, tr {
+    padding: 2px;
     border-color: black;
     border-style: solid;
     border-width: 2px;
