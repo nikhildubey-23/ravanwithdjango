@@ -13,8 +13,11 @@ load_dotenv()
 
 GROQ_API_KEY = os.getenv('GROQ_API_KEY')
 
-# Use /tmp directory for the database on Vercel
-DATABASE_PATH = os.path.join('/tmp', 'database.db')
+# Use /tmp directory for the database on Vercel, otherwise use local file for development
+if os.environ.get('VERCEL'):
+    DATABASE_PATH = os.path.join('/tmp', 'database.db')
+else:
+    DATABASE_PATH = os.path.join(os.path.dirname(__file__), 'database.db')
 
 def create_database():
     conn = sqlite3.connect(DATABASE_PATH)
