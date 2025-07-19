@@ -584,7 +584,12 @@ a:focus, button:focus, .form-control:focus {
   transition: opacity 0.3s, filter 0.3s;
 }
 
-/* Light Mode Styles */
+/* Smooth transition for theme changes */
+body, .container, .navbar, .main-container, .output, .form-control, .answer, button, .search-container, .history-item {
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Light Mode Styles - ensure all major elements are themed */
 body.light-mode {
   background: #f7f7fa;
   color: #222;
@@ -592,86 +597,32 @@ body.light-mode {
 body.light-mode .container,
 body.light-mode .main-container,
 body.light-mode .card,
-body.light-mode .list-group-item {
+body.light-mode .list-group-item,
+body.light-mode .output,
+body.light-mode .search-container,
+body.light-mode .history-item {
   background: #fff;
   color: #222;
   border: 1.5px solid #00bcd4;
   box-shadow: 0 4px 32px 0 rgba(0,188,212,0.08);
 }
-body.light-mode h1, body.light-mode h2, body.light-mode h3, body.light-mode h4, body.light-mode h5, body.light-mode h6 {
-  color: #00bcd4;
-}
 body.light-mode .navbar, body.light-mode .navbar-brand {
   background: #fff !important;
   color: #00bcd4 !important;
 }
+body.light-mode .form-control, body.light-mode textarea {
+  background: #f7f7fa;
+  color: #222;
+  border: 1.5px solid #00bcd4;
+}
 body.light-mode .answer, body.light-mode button {
   background: linear-gradient(90deg, #00bcd4, #ff4081);
   color: #fff;
+  border: none;
 }
-body.light-mode .list-group-item:hover {
+body.light-mode .list-group-item:hover, body.light-mode .history-item:hover {
   background: #00bcd4;
   color: #fff;
-}
-
-/* Responsive Tweaks */
-@media (max-width: 768px) {
-  .main-container, .container {
-    padding: 0.5rem;
-    border-radius: 0.7rem;
-  }
-  h1, h2, h3 {
-    font-size: 1.1rem;
-  }
-  button, .answer {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.95rem;
-  }
-  .navbar-brand {
-    font-size: 1.2rem;
-  }
-}
-
-/* Table Styling for AI Output */
-.output table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  background: var(--glass-bg);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 16px 0 rgba(0,255,255,0.08);
-  border: 2.5px solid var(--primary-neon);
-}
-.output th, .output td {
-  padding: 0.75rem 1.2rem;
-  border: 2px solid var(--primary-neon);
-  text-align: left;
-  color: var(--text-primary);
-  background: transparent;
-}
-.output th {
-  background: var(--primary-neon);
-  color: var(--dark-bg);
-  font-family: 'Orbitron', monospace;
-  font-weight: 700;
-  text-shadow: 0 0 10px var(--primary-neon);
-}
-.output tr:nth-child(even) td {
-  background: rgba(0,255,255,0.04);
-}
-@media (max-width: 768px) {
-  .output table, .output thead, .output tbody, .output th, .output td, .output tr {
-    display: block;
-    width: 100%;
-  }
-  .output th, .output td {
-    padding: 0.7rem 0.5rem;
-    font-size: 0.98rem;
-  }
-  .output th {
-    text-align: left;
-  }
 }
 body.light-mode .output th {
   background: #00bcd4;
