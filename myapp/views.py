@@ -4,14 +4,14 @@ import os
 import sqlite3
 from datetime import datetime
 from dotenv import load_dotenv
-from langchain_groq import ChatGroq
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import PromptTemplate
 import re
 import logging
 
 load_dotenv()
 
-GROQ_API_KEY = os.getenv('GROQ_API_KEY')
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 # Use /tmp directory for the database on Vercel, otherwise use local file for development
 if os.environ.get('VERCEL'):
@@ -62,10 +62,10 @@ def index(request):
     if request.method == 'POST':
         try:
             user_input = request.POST['user_input']
-            llm = ChatGroq(
-                temperature=0, 
-                groq_api_key=GROQ_API_KEY, 
-                model_name="deepseek-r1-distill-llama-70b"
+            llm = ChatGoogleGenerativeAI(
+                model="gemini-pro",
+                google_api_key=GEMINI_API_KEY,
+                temperature=0
             )
             prompt_template = create_prompt()
             chain_extract = prompt_template | llm 
